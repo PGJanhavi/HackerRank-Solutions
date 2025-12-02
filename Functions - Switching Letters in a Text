@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+        public static String replaceCharacter(String str, int n, char ch1, char ch2)
+        {  
+            if(str==null)
+        {
+            return null;
+        }
+            else
+            { 
+                StringBuilder sb = new StringBuilder(str);
+                for(int i=0;i<n;i++)
+            {
+                if(sb.charAt(i)== ch1)
+                {
+                    sb.setCharAt(i,ch2);
+                }
+                 else if(str.charAt(i)== ch2)
+                {
+                    sb.setCharAt(i,ch1);
+                }
+            }
+            return sb.toString();
+        }
+    }
+    
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        String str = sc.next();
+        int n = str.length();
+        char ch1 = sc.next().charAt(0);
+         char ch2 = sc.next().charAt(0);
+        System.out.print(replaceCharacter( str,  n,  ch1,  ch2));
+    }
+}
