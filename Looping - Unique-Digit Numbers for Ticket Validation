@@ -1,0 +1,32 @@
+import java.util.Scanner;
+public class Main
+{
+    public static void main(String[]args){
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int num=0,c,e=0;
+        for(int i=a;i<=b;i++)
+        {        num  = i;  
+         boolean unique= true;
+         int freq[]= new int[10];
+            while(num>0)
+            { 
+                c = num%10;
+                if(freq[c]>0)
+                {
+                    unique = false;
+                    break;
+                }
+                freq[c]++;
+                num = num/10;
+            }
+            if(unique==true)
+            {
+                e++;
+            }
+        }
+        
+            System.out.println(e);  
+    }
+}
