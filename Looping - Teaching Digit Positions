@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+        int temp = n;
+        int digits=0;
+        while(temp>0)
+        {
+            temp/=10;
+            digits++;
+        }
+        int a=digits-k;
+        if(k<=digits){
+        for(int i = 1;i<=a;i++)
+        {
+        n= n/10;
+        }
+       System.out.println(n%10);
+        }
+        else if(k>digits)
+        {   int b=digits-k;
+            System.out.println(b);
+        }    
+    }
+}
