@@ -1,0 +1,38 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int a= sc.nextInt();
+         int b= sc.nextInt();
+        int p,l;
+        double pp,lp;
+        if(a>0 && b>0)
+        { if(a<b)
+        {
+            p = b-a;
+            pp = ((double)p/a)*100;
+            System.out.println("Profit - "+(int)pp+"%");
+        }else if(a==b)
+        {
+            System.out.println("No Profit, No Loss");
+        }else
+        {
+            l = a-b;
+            lp = ((double)l/a)*100;
+            System.out.println("Loss - "+(int)lp+"%");
+        }
+        }
+        else
+        {
+         System.out.println("Invalid Input");
+        }   
+        }
+}
+    
