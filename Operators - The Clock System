@@ -1,0 +1,22 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int x=sc.nextInt();
+         int y=sc.nextInt();
+        int a = x*y;
+        int b = a%12;
+        if(b==0){
+            System.out.println(12);}
+            else{
+         System.out.println(b);}
+        
+    }
+}
