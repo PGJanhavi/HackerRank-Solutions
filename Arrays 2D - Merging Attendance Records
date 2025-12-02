@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int cls =sc.nextInt();
+        int days =sc.nextInt();
+        int w1[][]=new int[cls][days];
+         int w2[][]=new int[cls][days];
+        int res[][]= new int[cls][days];
+        for(int i=0;i<cls;i++)
+        {
+           for(int j=0;j<days;j++)
+           {
+               w1[i][j]=sc.nextInt();
+           }
+        }
+        for(int i=0;i<cls;i++)
+        {
+          for(int j=0;j<days;j++)
+           {
+               w2[i][j]=sc.nextInt();
+           }
+        }
+         for(int i=0;i<cls;i++)
+        {
+          for(int j=0;j<days;j++)
+           {
+              res[i][j]=w1[i][j]+w2[i][j];
+           }
+        }
+        for(int i=0;i<cls;i++)
+        {
+          for(int j=0;j<days;j++)
+           {
+             System.out.print(res[i][j]+" ");
+           } System.out.println();
+        }
+    }
+}
