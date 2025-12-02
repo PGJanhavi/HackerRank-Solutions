@@ -1,0 +1,23 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int r1 = sc.nextInt();
+        int  n = sc.nextInt();
+        int r2 = sc.nextInt();
+        int x = sc.nextInt();
+        int a = (int)(Math.ceil((double)x/60));
+        int b = r1*n;
+        int c = a-n;
+        int d = r2*c;
+        System.out.println(b+d);
+        
+    }
+}
