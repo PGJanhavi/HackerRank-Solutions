@@ -1,0 +1,45 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n =sc.nextInt();
+        sc.nextLine();
+        Queue<Integer> q1 = new LinkedList<>();
+        Queue<Integer> q2 = new LinkedList<>();
+        for(int i =0;i<n;i++)
+        {
+            String s = sc.nextLine();
+            String arr[] = s.split(" ");
+            if(arr[0].equals("push"))
+            {
+                int a = Integer.parseInt(arr[1]);
+                q2.add(a);
+                while(!q1.isEmpty())
+                {
+                    q2.add(q1.remove());
+                }
+                Queue<Integer> temp = q1;
+                q1 = q2;
+                q2 = temp;
+                System.out.println("Pushed: "+a);
+            }
+            if(arr[0].equals("top"))
+            {
+                System.out.println("Top version: "+q1.peek());
+            }
+            if(arr[0].equals("pop"))
+            {
+                System.out.println("Popped: "+ q1.remove());
+            }
+             if(arr[0].equals("empty"))
+            {
+                System.out.println("Is stack empty: "+ q1.isEmpty());
+            }
+        }
+    }
+}
