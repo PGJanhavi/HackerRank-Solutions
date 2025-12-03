@@ -1,0 +1,75 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+class Node{
+    String data;
+    Node left;
+    Node right;
+    Node(String data)
+    {
+        this.data=data;
+        this.left=null;
+         this.right=null;
+    }
+}
+class B{
+    public static Node build(String arr[])
+    {
+        if(arr[0].equals("null"))
+           {
+               return null;
+           }
+        Node root = new Node(arr[0]);
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        int i=1;
+        while(!q.isEmpty() && i<arr.length)
+        {
+            Node current = q.remove();
+            if(i<arr.length && !arr[i].equals("null"))
+            {
+                current.left=new Node(arr[i]);
+                q.add(current.left);
+            }
+            i++;
+             if(i<arr.length && !arr[i].equals("null"))
+            {
+                current.right=new Node(arr[i]);
+                q.add(current.right);
+            }
+            i++;
+        } 
+        return root;
+    }
+    public static void inorder(Node root,List<String>l)
+    {
+        if(root == null)
+        {
+            return;
+        }
+        inorder(root.left,l);
+        l.add(root.data);
+         inorder(root.right,l);
+    }
+}
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+          int n = sc.nextInt();
+        sc.nextLine();
+       String arr[]=sc.nextLine().split(" ");
+     
+        
+        Node root = B.build(arr);
+        List<String> l = new ArrayList<>();
+        B.inorder(root,l);
+        for(String val:l)
+        {
+            System.out.print(val+" ");
+        }
+    }
+}
