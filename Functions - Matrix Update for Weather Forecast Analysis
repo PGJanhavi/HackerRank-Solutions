@@ -1,0 +1,52 @@
+import java.util.Scanner;
+public class Solution
+{
+    public static int[][] ReplaceDiagonal(int m,int mat[][])
+        {
+            if(mat==null|| m==0)
+            {
+                return mat;
+            }
+            int[][] r = new int[m][m];
+         int dx[] = {-1,-1,-1,0,0,1,1,1};
+         int dy[] ={-1,0,1,-1,1,-1,0,1};
+         int ni=0,nj=0;
+    for(int i=0;i<m;i++)
+    {
+            int sum=0;
+         for(int d=0;d<8;d++)
+    {
+            ni= dx[d]+i;
+            nj=dy[d]+i;
+         if(ni>=0 && ni<m && nj>=0 && nj<m)
+         {
+             sum+=mat[ni][nj];
+         }
+        }
+        mat[i][i]=sum;
+    }
+    return mat;
+        }
+public static void main (String[] args) 
+{ 
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    int mat[][] = new int[m][m];
+    for(int i=0;i<m;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            mat[i][j]=sc.nextInt();
+    }
+}
+ int o[][]=ReplaceDiagonal(m,mat);
+ for(int i=0;i<m;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            System.out.print(o[i][j]+" ");     
+    }
+     System.out.println();
+}
+}   
+}
