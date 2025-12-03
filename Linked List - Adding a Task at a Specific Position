@@ -1,0 +1,98 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+class Node
+{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data=data;
+        this.next=null;
+    }
+}
+
+class L
+{
+    Node head;
+    public void insert(int data)
+    {
+        Node newnode = new Node(data);
+        if(head == null)
+        {
+            head = newnode;
+        }
+        else
+        {
+            Node current = head;
+            while(current.next != null)
+            {
+                current = current.next;
+            }
+            current.next = newnode;
+        }
+    }
+        public void position(int p, int ele)
+        {
+             Node newnode = new Node(ele);
+            if(p==1)
+            {
+                newnode.next = head;
+                head = newnode;
+            }
+            else
+            {
+                Node current = head;
+                int i=1;
+                
+                    while(i<p-1 && current != null)
+                {
+                    current = current.next;
+                    i++;
+                }
+                
+                if(current == null)
+                {
+                    System.out.print(" Position out of range");
+                }
+                
+                 else
+                 {
+                 newnode.next = current.next;
+                current.next = newnode;
+                   }   
+            }
+        }
+            public void print()
+            {
+                Node current = head;
+                while(current != null)
+                {
+                    System.out.print(current.data +" ");
+                    current = current.next;
+                }
+            }
+        }
+    
+
+
+public class Solution{
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        L list = new L();
+        for(int i=0;i<n;i++)
+        {
+            int data = sc.nextInt();
+            list.insert(data);
+        }
+        int p = sc.nextInt();
+        int ele = sc.nextInt();
+        list.position(p,ele);
+        list.print();
+        
+    }
+}
