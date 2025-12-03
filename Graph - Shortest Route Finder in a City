@@ -1,0 +1,60 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+    int qu = sc.nextInt();
+    for(int i=0;i<qu;i++)
+    {
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        ArrayList<ArrayList<Integer>> g = new ArrayList<>();
+        for(int j=0;j<=n;j++)
+        {
+            g.add(new ArrayList<Integer>());
+        }
+        for(int k=0;k<m;k++)
+        {
+            int u=sc.nextInt();
+            int v=sc.nextInt();
+            g.get(u).add(v);
+            g.get(v).add(u);   
+        }
+         int s = sc.nextInt();
+         int d[] = new int[n+1];
+         Arrays.fill(d,-1);
+         Queue<Integer> q = new LinkedList<>();
+         boolean v[]= new boolean[n+1];
+        q.add(s);
+        v[s]= true;
+        d[s]=0;
+        while(!q.isEmpty())
+        {
+            int node = q.poll();
+            for(int ne:g.get(node))
+            {
+                if(!v[ne])
+                {
+                    v[ne]=true;
+                    d[ne]=d[node]+6;
+                    q.add(ne);
+                }
+            }
+        }
+        for(int a=1;a<=n;a++)
+        {
+            if(a!=s)
+            {
+                System.out.print(d[a]+" ");
+            }
+        }
+        System.out.println();
+    }
+    }
+}
