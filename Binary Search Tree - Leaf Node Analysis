@@ -1,0 +1,65 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+class Node
+{
+    int data;
+    Node left;
+    Node right;
+    Node(int data)
+    {
+        this.data=data;
+        this.left=null;
+        this.right=null;
+    }
+}
+class B
+{
+    public static Node build(Node root, int b)
+    {
+        if(root == null)
+        {
+            root = new Node(b);
+            return root;
+        }
+        if(b<root.data)
+        {
+            root.left = build(root.left,b);
+        }
+        if(b>root.data)
+        {
+            root.right = build(root.right,b);
+        }
+        return root;
+    }
+    public static int l(Node root)
+    {
+        if(root == null)
+        {
+            return 0;
+        }
+        if(root.left == null && root.right == null)
+        {
+            return 1;
+        }
+        return l(root.left)+l(root.right);
+    }
+}
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        Node root = null;
+        int cnt =0;
+        for(int i=0;i<n;i++)
+        {
+            int a = sc.nextInt();
+            root = B.build(root,a);
+        }
+        System.out.print(B.l(root));
+    }
+}
