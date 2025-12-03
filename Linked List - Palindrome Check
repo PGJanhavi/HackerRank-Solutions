@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+public class Main
+{
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        LinkedList<Integer> l1 = new LinkedList<>();
+        for(int i=0;i<n;i++)
+        {
+            int data = sc.nextInt();
+            l1.add(data);
+        }
+        LinkedList<Integer> l2 = new LinkedList<>(l1);
+        Collections.reverse(l2);
+        
+        if(l1.equals(l2))
+        {
+            System.out.print("Yes");
+        }
+        else
+        {
+            System.out.print("No");
+        }
+    }
+}
