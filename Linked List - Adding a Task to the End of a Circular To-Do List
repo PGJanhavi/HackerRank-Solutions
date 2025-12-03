@@ -1,0 +1,62 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+class Node
+{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data=data;
+        this.next=null;
+    }
+}
+class L{
+    Node head;
+    public void copy(int data)
+    { 
+        Node newnode = new Node(data);
+        if(head == null)
+        {
+            head = newnode;
+            newnode.next=head;
+        }
+        else{
+        Node current = head;
+        while(current.next != head)
+        {
+            current=current.next;
+        }
+    
+        current.next=newnode;
+            newnode.next=head;
+        }
+    }
+    public void print()
+    {
+        Node current = head;
+        do
+        {
+            System.out.print(current.data+" ");
+            current = current.next;
+        }
+        while(current != head);
+    }
+}
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        L list = new L();
+        for(int i=0;i<n;i++)
+        {
+            int data = sc.nextInt();
+            list.copy(data);
+        }
+        list.print();
+    }
+}
