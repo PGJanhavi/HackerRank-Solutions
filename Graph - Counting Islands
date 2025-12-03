@@ -1,0 +1,55 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    static int m,n;
+    static int arr[][];
+    static boolean v[][];
+    static int di[] = {-1,1,0,0};
+    static int dj[] = {0,0,-1,1};
+public static void dfs(int i, int j)
+{
+    v[i][j] = true;
+    for(int a =0;a<4;a++)
+    {
+        int ni = i +di[a];
+        int nj = j +dj[a];
+    
+    if(ni >=0 && ni <m && nj >= 0 && nj <n && arr[ni][nj] == 1 && !v[ni][nj])
+    {
+        dfs(ni,nj);
+    }
+    }
+}
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+         m = sc.nextInt();
+         n = sc.nextInt();
+         arr = new int[m][n];
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                arr[i][j] = sc.nextInt();
+            }
+        }
+        int ic = 0;
+        v = new boolean[m][n];
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(arr[i][j] == 1 && !v[i][j])
+                {
+                    dfs(i,j);
+                    ic++;
+                }
+    }
+}
+        System.out.print(ic);
+    }
+}
