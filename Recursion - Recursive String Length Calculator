@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+public static int a(String s)
+{
+    if(s.equals(""))
+    {
+        return 0;
+    }
+    else
+    { 
+       return 1+a(s.substring(1));
+    }
+}
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        System.out.print(a(s));
+    }
+}
