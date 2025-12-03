@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    public static int c(int aaa,int bbb)
+    { 
+     if(bbb==0)
+     {
+         return aaa;
+     }
+     return c(bbb,aaa%bbb);
+    }
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int aaa=sc.nextInt();
+         int bbb=sc.nextInt();
+        System.out.print(c(aaa,bbb));
+    }
+}
