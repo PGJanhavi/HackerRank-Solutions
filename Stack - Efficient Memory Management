@@ -1,0 +1,54 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine();
+        String arr1[] = new String[n];
+         String arr2[] = new String[n];
+       int top1 = -1;
+        int top2 = -1;
+        while(true)
+        {
+        
+            String s[] = sc.nextLine().split(" ");
+            if(s[0].equals("-1"))
+            {
+                break;
+            }
+            if(s[0].equals("1"))
+            {
+                arr1[++top1] = s[1];
+                
+                
+            }
+            if(s[0].equals("2"))
+            {
+                arr2[++top2] = s[1]; 
+                
+            }
+            if(s[0].equals("3"))
+            {
+                if(top1>=0)
+                {
+                System.out.println(arr1[top1--]);}
+            }
+             if(s[0].equals("4"))
+            { 
+                 if(top2>=0)
+                {
+                 System.out.println(arr2[top2--]);
+                     
+                 }
+            }
+            
+        }
+    }
+}
