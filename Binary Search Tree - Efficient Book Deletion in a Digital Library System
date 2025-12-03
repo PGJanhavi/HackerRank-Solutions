@@ -1,0 +1,99 @@
+import java.util.*;
+class Node
+{
+    int data;
+    Node left;
+    Node right;
+    Node(int data)
+    {
+        this.data=data;
+        this.left=null;
+          this.right=null;        
+    }
+}
+class B
+{
+    public static Node build(Node root, int c)
+    {
+        if(root == null)
+        {
+            root = new Node(c);
+            return root;
+        }
+        if(c>root.data)
+        {
+            root.right = build(root.right,c);
+        }
+        if(c<root.data)
+        {
+            root.left = build(root.left,c);
+        }
+        return root;
+    }
+    public static Node mv(Node root)
+    {
+        while(root.left != null)
+        {
+            root=root.left; 
+        }
+        return root;
+    }
+    public static Node delete(Node root, int b)
+    {
+        if(root == null)
+        {
+            return null;
+        }
+         if(b<root.data)
+        {
+           root.left = delete(root.left,b);
+        }
+        else if(b>root.data)
+        {
+             root.right = delete(root.right,b);
+        }
+        else
+        {
+            if(root.left == null)
+            {
+                return root.right;
+            }
+            if(root.right == null)
+            {
+                return root.left;
+            }
+            
+            Node s = mv(root.right);
+            root.data = s.data;
+            root.right = delete(root.right,s.data);
+        }
+        return root;
+    }
+    public static void inorder(Node root)
+    {
+        if(root == null)
+        {
+            return;
+        }
+        inorder(root.left);
+        System.out.print(root.data+" ");
+         inorder(root.right);
+    }
+}
+class Solution
+{
+    public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        Node root = null;
+        for(int i=0;i<a;i++)
+        {
+            int c =sc.nextInt();
+            root = B.build(root,c);
+        }
+        int b = sc.nextInt();
+        root = B.delete(root,b);
+        B.inorder(root);
+    }
+}
