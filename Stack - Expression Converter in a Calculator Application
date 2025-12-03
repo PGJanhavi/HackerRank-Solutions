@@ -1,0 +1,72 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution{
+    public static int p(char c)
+    {
+         if(c == '/'||c=='*')
+         {
+             return 2;
+         }
+        else if(c == '+'||c=='-')
+         {
+             return 1;
+         }
+        else
+        {
+            return -1;
+        }
+    }
+    public static String ip(String s)
+    {
+    StringBuilder sb = new StringBuilder();
+        LinkedList<Character> list = new LinkedList<>();
+        for(int i=0;i<s.length();i++)
+        {
+            if(s.charAt(i)==' ')
+            {
+                continue;
+            }
+            if(s.charAt(i) >='A' && s.charAt(i) <='Z')
+            {
+                sb.append(s.charAt(i)).append(' ');
+            }
+            else if(s.charAt(i) =='(')
+            {
+                list.push(s.charAt(i));
+            }
+            else if(s.charAt(i) ==')')
+            {
+                while(!list.isEmpty() && list.peek() != '(')
+                {
+                    sb.append(list.pop()).append(' ');
+                }
+                list.pop();
+            }
+                        else 
+            {
+                while(!list.isEmpty() && p(s.charAt(i))<= p(list.peek()))
+                {
+                    sb.append(list.pop()).append(' ');
+                }
+                list.push(s.charAt(i));
+            }
+        }
+        while(!list.isEmpty())
+        {
+            sb.append(list.pop()).append(' ');
+        }
+        return sb.toString();
+    }
+    
+    public static void main(String[] args) {
+        /* Enter your code here. ad input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        System.out.print(ip(s));
+    
+}
+}
