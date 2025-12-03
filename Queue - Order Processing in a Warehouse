@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        Queue<Integer> q = new LinkedList<>();
+        for(int i=0;i<n;i++)
+        {
+            int a = sc.nextInt();
+            q.add(a); 
+        }
+        int k =sc.nextInt();
+        Stack<Integer> s = new Stack<>();
+        for(int i=0;i<k;i++)
+        {
+            s.push(q.remove());
+        }
+         for(int i=0;i<k;i++)
+        {
+            
+            System.out.print(s.pop()+" ");
+        }
+         for(int c : q)
+        {
+            System.out.print(c+" ");
+        }
+    }
+}
