@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class LinkedList {
+    Node head;
+
+    // Method to insert a node at the end
+    public void insertAtEnd(int data) {
+        Node newNode = new Node(data);
+
+        if (head == null) {
+            head = newNode;
+        }
+        else
+        {
+        Node current = head;
+        while (current.next != null) {
+            current = current.next;
+        }
+
+        current.next = newNode;
+        }
+    }
+
+    // Method to print the list
+    public void printList() {
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
+        }
+    }
+}
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt(); // Number of product IDs
+        LinkedList list = new LinkedList();
+
+        for (int i = 0; i < n; i++) {
+            int id = sc.nextInt();
+            list.insertAtEnd(id);
+        }
+
+        list.printList();
+    }
+}
