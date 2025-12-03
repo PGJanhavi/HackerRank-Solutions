@@ -1,0 +1,39 @@
+import java.util.*;
+public class Main{
+    public static String recursion(String s)
+    { StringBuilder sb = new StringBuilder();
+    String a = "Empty String";
+        if(s.length()==0)
+        {
+            return a;
+        }
+        int i=0;
+        while(i<s.length())
+        {
+            int j =i+1;
+            while(j<s.length() && s.charAt(j)==s.charAt(i))
+            {
+                j++;
+            }
+        if(j==i+1)
+        {
+            sb.append(s.charAt(i));
+        }
+        i=j;
+    }
+    String r = sb.toString();
+    if(r.length()==s.length())
+    {
+        return r;
+    }
+    else{
+        return recursion(r);
+    }
+    }
+    public static void main(String[]args)
+    {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        System.out.print(recursion(s));
+    }
+}
