@@ -1,0 +1,51 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int arr[] = new int[n];
+        for(int i=0;i<n;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+        int a = sc.nextInt();
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        for(int b : arr)
+        {
+            hm.put(b, hm.getOrDefault(b,0)+1);
+        }
+        PriorityQueue<Integer> p = new PriorityQueue<>(new Comparator<Integer>()
+        {
+        public int compare(Integer a, Integer b)
+        {
+            int fa = hm.get(a);
+            int fb = hm.get(b);
+            if(fa != fb)
+            {
+                return fa-fb;
+            }
+                      return a-b;  }                               });
+    for(int c: hm.keySet())
+    {
+        p.add(c);
+            if(p.size()>a)
+            {
+                p.poll();
+            }
+    }
+        LinkedList<Integer> l = new LinkedList<>();
+        while(!p.isEmpty())
+        {
+            l.add(p.poll());
+        }
+        Collections.reverse(l);
+        for(int d : l)
+        {
+            System.out.print(d+" ");
+        }
+    }
+}
