@@ -1,0 +1,38 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+public static void a(int n,int arr[])
+{ Stack<Integer> s = new Stack<>();
+  int arr2[] = new int[n];
+    for(int i=0;i<n;i++)
+    {
+       while(s.isEmpty() == false && arr[i]>arr[s.peek()])
+       {
+           int a = s.pop();
+           arr2[a]=i-a;
+       }
+        s.push(i);
+    }
+     for(int i=0;i<n;i++)
+    {
+         System.out.print(arr2[i]+" ");
+}
+}
+public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+         int n = sc.nextInt();
+    
+    int arr[] = new int[n];
+    
+    for(int i=0;i<n;i++)
+    {
+        arr[i]=sc.nextInt();
+    }
+        a(n,arr);
+    }
+}
