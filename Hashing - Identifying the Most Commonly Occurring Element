@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int arr[] = new int[a];
+        HashMap<Integer,Integer> h = new HashMap<>();
+        for(int i=0;i<a;i++)
+        {
+            arr[i] = sc.nextInt();
+        }
+        for(int i=0;i<a;i++)
+        {
+            if(h.containsKey(arr[i]))
+            {
+                h.put(arr[i],h.get(arr[i])+1);
+            }
+            else
+            {
+                h.put(arr[i],1);
+            }
+        }
+        int m =0;
+        int r =0;
+        for(int n : h.keySet())
+        {
+            int c =  h.get(n);
+            if(c>m)
+            {
+                m=c;
+                r=n;
+            }
+        }
+        System.out.print(r);
+        
+    }
+}
