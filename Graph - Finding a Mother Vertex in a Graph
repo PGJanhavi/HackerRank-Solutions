@@ -1,0 +1,62 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+public static void dfs(int n, boolean v[], ArrayList<ArrayList<Integer>> graph)
+{
+    v[n]= true;
+    for(int ne : graph.get(n))
+    {
+        if(!v[ne])
+        {
+            dfs(ne,v,graph);
+        }
+    }
+}
+    public static int find(int n, ArrayList<ArrayList<Integer>> graph)
+    {
+        boolean vi[] = new boolean[n];
+        int lv = -1;
+        for(int i=0;i<n;i++)
+        {
+            if(!vi[i])
+            {
+                dfs(i,vi,graph);
+                    lv = i;
+            }
+        }
+        Arrays.fill(vi,false);
+        dfs(lv,vi,graph);
+        for(boolean vis : vi)
+        {
+            if(!vis)
+            {
+                return -1;
+            }
+        }
+        return lv;
+    }
+    public static void main(String[] args) 
+    {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
+        for(int i=0;i<n;i++)
+        {
+            graph.add(new ArrayList<Integer>());
+        }
+        for(int i=0;i<m;i++)
+        {
+            int u = sc.nextInt();
+            int v = sc.nextInt();
+            graph.get(u).add(v);
+        }
+        int mo = find(n,graph);
+        System.out.print(mo);
+    }
+}
