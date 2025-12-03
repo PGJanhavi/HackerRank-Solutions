@@ -1,0 +1,70 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void dfs(ArrayList<ArrayList<Integer>> g,boolean v[], int no)
+    {
+        v[no]=true;
+        for(int ne: g.get(no))
+        {
+            if(!v[ne])
+            {
+                dfs(g,v,ne);
+            }
+        }
+    }
+    public static boolean c(ArrayList<ArrayList<Integer>> g,ArrayList<ArrayList<Integer>> rg,int n)
+    {
+        boolean v[] = new boolean[n+1];
+        dfs(g,v,1);
+        for(int i=1;i<=n;i++)
+        {
+            if(!v[i])
+            {
+                return false;
+            }
+        }
+        Arrays.fill(v,false);
+         dfs(rg,v,1);
+        for(int i=1;i<=n;i++)
+        {
+            if(!v[i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        ArrayList<ArrayList<Integer>> g = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> rg = new ArrayList<>();
+        for(int i=0;i<=n;i++)
+        {
+            g.add(new ArrayList<Integer>());
+            rg.add(new ArrayList<Integer>());
+        }
+        for(int i=0;i<m;i++)
+        {
+             int u = sc.nextInt();
+             int v = sc.nextInt();
+            g.get(u).add(v);
+            rg.get(v).add(u);   
+        }
+        if(c(g,rg,n))
+        {
+            System.out.print("The road network is connected.");
+        }
+        else
+        {
+            System.out.print("The road network is not connected.");
+        }
+        
+    }
+}
