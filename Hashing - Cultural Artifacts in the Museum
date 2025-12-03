@@ -1,0 +1,58 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int m = sc.nextInt();
+        int n = sc.nextInt();
+        HashMap<Integer,Integer> ma = new HashMap<>();
+        for(int i=0;i<n;i++)
+        {
+            ma.put(sc.nextInt(),1);
+        }
+        for(int i=1;i<m;i++)
+        {
+            HashSet<Integer> s = new HashSet<>();
+            for(int j=0;j<n;j++)
+        {
+                s.add(sc.nextInt());
+        }
+            for(int a: s)
+            {
+                if(ma.containsKey(a) && ma.get(a)==i)
+                {
+                    ma.put(a,i+1);
+                }
+            }
+        }
+            ArrayList<Integer> ar = new ArrayList<>();
+            for(int k : ma.keySet())
+            {
+                if(ma.get(k)==m)
+                {
+                   ar.add(k); 
+                }
+            }
+if(ar.size() == 0)
+{
+    System.out.print("No common elements");
+}
+        else
+        {
+            Collections.sort(ar,Collections.reverseOrder());
+            for(int b: ar)
+            {
+                System.out.print(b+" ");
+            }
+            
+        
+    }
+
+}
+}
