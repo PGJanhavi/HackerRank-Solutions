@@ -1,0 +1,52 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+class Edge
+{
+    int d;
+    int w;
+    Edge(int d,int w)
+    {
+        this.d=d;
+        this.w=w;  
+    }
+}
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        ArrayList<Edge> graph[] = new ArrayList[n];
+for(int i=0;i<n;i++)
+{
+    graph[i] = new ArrayList<>();
+}
+        for(int i=0;i<m;i++)
+        {
+            int u=sc.nextInt();
+            int v=sc.nextInt();
+            int w=sc.nextInt();
+            graph[u-1].add(new Edge(v,w));
+            graph[v-1].add(new Edge(u,w));  
+        }
+        for(int i=0;i<graph.length;i++)
+        {
+            System.out.print(i+1 +" ->");
+            ArrayList<Edge> e = graph[i];
+            for(int j=0;j<e.size();j++)
+            {
+                Edge ed = e.get(j);
+                System.out.print(" ("+ed.d+", "+ed.w+") ");
+                if(j<e.size()-1)
+                {
+                    System.out.print("->");
+                }
+            }
+            System.out.println();
+        }
+    }
+}
