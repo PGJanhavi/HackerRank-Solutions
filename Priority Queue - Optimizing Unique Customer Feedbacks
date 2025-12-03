@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        for(int i=0;i<n;i++)
+        {
+            int a = sc.nextInt();
+            hm.put(a, hm.getOrDefault(a,0)+1);
+        }
+        int b = sc.nextInt();
+        int d = hm.size();
+        PriorityQueue<Integer> p = new PriorityQueue<>();
+        for(int c : hm.values())
+        {
+            if(c>1)p.add(c-1);
+        }
+        while(b>0 && !p.isEmpty())
+        {
+            int s = p.poll();
+            if(b>=s)
+            {
+                b -=s;
+            }else
+            {
+                b=0;
+            }
+        }
+        if(b>0)
+        {
+            d -= b;
+            if(d<0)
+            {
+                d =0;
+            }
+        }
+        System.out.print(d);
+    }
+}
