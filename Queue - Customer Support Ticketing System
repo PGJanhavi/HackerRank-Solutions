@@ -1,0 +1,65 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    static Queue<String> qu = new LinkedList<>();
+    public static void q(String s)
+    {
+        String arr[]=s.split(" ",2);
+        if(arr[0].equals("ENQUEUE"))
+        {
+            qu.add(arr[1]);
+        }
+        if(arr[0].equals("DEQUEUE"))
+        {
+            if(qu.isEmpty())
+            {
+                System.out.println("Queue is empty.");
+            }
+            else{
+            String r = qu.remove();
+            System.out.println("Processed Ticket: "+r);
+            }
+        }
+        if(arr[0].equals("DISPLAY"))
+        {
+            if(qu.isEmpty())
+            {
+                System.out.println("Queue is empty.");
+            }
+            else{
+            System.out.print("Current Queue: ");
+            for(String t : qu)
+            {
+            System.out.print(t+" ");
+            }
+            
+             System.out.println();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine(); 
+        for(int i=0;i<n;i++)
+        {
+            String s = sc.nextLine(); 
+             String arr[]=s.split(" ",2);
+            if(!arr[0].equals("ENQUEUE")&&!arr[0].equals("DEQUEUE")&&
+                     !arr[0].equals("DISPLAY"))
+            {
+                 System.out.println("Invalid command.");
+            }
+            else
+            {
+            q(s);   
+        }
+    }
+}
+}
