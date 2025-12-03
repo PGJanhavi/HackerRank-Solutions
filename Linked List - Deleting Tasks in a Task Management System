@@ -1,0 +1,83 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+class Node{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data=data;
+        this.next=null;
+    }
+}
+class L{
+    Node head;
+    public void copy(int data)
+    {
+        Node newnode = new Node(data);
+        if(head == null)
+        {
+            head = newnode;
+        }
+        else
+        {
+         Node current = head;
+            while(current.next != null)
+            {
+                current = current.next;
+            }
+            current.next = newnode;
+        }
+    }
+
+
+    public void delete(int m)
+    {  
+         
+        while(head != null && m>0)
+        {
+            head = head.next;
+            m--;
+        }
+    }
+    public void print()
+    {
+        Node current = head;
+        {
+            if(current==null)
+            {
+                System.out.print("List is empty");
+            }
+            else
+            {
+                while(current != null)
+                {
+                    System.out.print(current.data+" ");
+                    current = current.next;
+                }
+            }
+        }
+    }
+}
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        L list = new L();
+        for(int i=0;i<n;i++)
+        {
+            int data = sc.nextInt();
+            list.copy(data);
+        }
+        int m = sc.nextInt();
+        list.delete(m);
+        list.print();
+        
+        
+    }
+}
