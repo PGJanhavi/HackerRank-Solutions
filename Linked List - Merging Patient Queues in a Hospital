@@ -1,0 +1,94 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+class Node
+{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data=data;
+        this.next=null;
+    }
+}
+class L
+{
+    Node head;
+    public void copy(int data)
+    {
+        Node newnode = new Node(data);
+        if(head == null)
+        {
+            head = newnode;
+        }
+        else
+        {
+            Node current = head;
+            while(current.next != null)
+            {
+               current = current.next; 
+            }
+            current.next = newnode;
+        }
+    }
+     public Node merge(Node list1,Node list2)
+     { 
+         if(list1 == null)
+             return list2;
+         else if(list2==null)
+             return list1;
+         if(list1.data>list2.data)
+         {
+             Node temp = list1;
+             list1 = list2;
+             list2 = temp;  
+         }
+         
+         Node result = list1;
+         while(list1 != null && list2 != null)
+         {  
+            Node prev = null;
+            while(list1 != null && list1.data<=list2.data)
+            {
+                prev = list1;
+                list1 = list1.next;//3
+            }
+             prev.next = list2;
+            Node temp = list1;
+            list1 = list2;
+            list2 = temp;
+         }
+       
+    return result;
+}
+}
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        L list1 = new L();
+        for(int i=0;i<a;i++)
+        {
+            int data1 = sc.nextInt();
+            list1.copy(data1);
+        }
+        int b = sc.nextInt();
+        L list2 = new L();
+        for(int i=0;i<b;i++)
+        {
+            int data2 = sc.nextInt();
+            list2.copy(data2);
+        }
+        L li = new L();
+       Node ans =  li.merge(list1.head,list2.head);
+       while(ans != null)
+       {
+           System.out.print(ans.data+" ");
+           ans = ans.next;
+       }
+    }
+}
