@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        HashMap<Integer,Integer> h = new HashMap<>();
+        for(int i=0;i<n;i++)
+        {
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            h.put(a,b);
+        }
+         int c = sc.nextInt();
+        for(int i=0;i<c;i++)
+        {
+            int d = sc.nextInt();
+            if(h.containsKey(d))
+            {
+            System.out.println(h.get(d));
+        }
+            else
+            {
+                System.out.println("Student not found");
+            }
+    }
+}
+}
