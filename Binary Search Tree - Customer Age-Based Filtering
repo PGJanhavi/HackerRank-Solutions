@@ -1,0 +1,83 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+class Node
+{
+    int data;
+    Node left;
+    Node right;
+    Node(int data)
+    {
+        this.data=data;
+        this.left=null;
+        this.right=null;
+    }
+}
+class B
+{
+    public static Node build(Node root, int b)
+    {
+        if(root == null)
+        {
+            root = new Node(b);
+            return root;
+        }
+        if(b>root.data)
+        {
+            root.right = build(root.right,b);
+        }
+        if(b<root.data)
+        {
+            root.left= build(root.left,b);
+        }
+        return root;
+    }
+    public static Node trim(Node root,int c , int d)
+    {   
+        if(root == null)
+        {
+            return null;
+        }
+        if(root.data<c)
+        {  
+            return trim(root.right,c,d);
+        }
+        else if(root.data>d)
+        {
+           return trim(root.left,c,d); 
+        }
+        root.left =  trim(root.left,c,d);
+        root.right =  trim(root.right,c,d);
+        return root;
+    }
+    public static void p(Node root)
+    {
+        if(root== null)
+        {
+            return;
+        }
+        System.out.print(root.data+" ");
+        p(root.left);
+        p(root.right);
+    }
+}
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        Node root = null;
+         for(int i=0;i<a;i++)
+        {  
+            int b = sc.nextInt();
+            root = B.build(root,b);
+         }
+        int c = sc.nextInt();
+        int d = sc.nextInt();
+        root= B.trim(root,c,d);
+         B.p(root);
+    }
+}
