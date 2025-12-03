@@ -1,0 +1,38 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        HashSet<Integer> h = new HashSet<>();
+        for(int i=0 ; i < n ; i++)
+        {
+            h.add(sc.nextInt());
+        }
+        
+        int l =0;
+        for(int d : h)
+        {
+            if(!h.contains(d-1))
+            {
+                int c = d;
+                int co = 1;
+                while(h.contains(c+1))
+                {
+                    c++;
+                    co++;
+                }
+            
+            l = Math.max(l,co);
+            }
+        }
+        
+        System.out.print(l);
+    }
+}
