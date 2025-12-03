@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    public static int divisibilityByEleven(int num)
+    { 
+        String s = String.valueOf(num);
+        int n=s.length();
+     int cnt =0;
+       for(int i=0;i<n;i++)
+       {  int cv =0;
+           for(int j=i;j<n;j++) 
+           {
+               cv = cv * 10 + (s.charAt(j)-'0');
+               if(cv%11==0)
+               {
+                   cnt++;
+               }
+           }
+       }return cnt;
+    }
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int num=sc.nextInt();
+        System.out.print(divisibilityByEleven(num));
+    }
+}
