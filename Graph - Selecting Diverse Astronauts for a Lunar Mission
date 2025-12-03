@@ -1,0 +1,60 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        ArrayList<ArrayList<Integer>> g = new ArrayList<>();
+         for(int i=0;i<n;i++)
+        {
+             g.add(new ArrayList<Integer>());
+         }
+        for(int i=0;i<m;i++)
+        {
+            int u = sc.nextInt();
+            int v = sc.nextInt();
+            g.get(u).add(v);
+            g.get(v).add(u);   
+         }
+        boolean v[] = new boolean[n];
+        ArrayList<Integer> c = new ArrayList<>();
+        for(int i=0;i<n;i++)
+        {
+            if(!v[i])
+            {
+                int s = dfs(i,g,v);
+                c.add(s);
+            }
+        }
+       int t = n*(n-1)/2;
+       int sa =0;
+        for(int b : c)
+        {
+          sa+= b*(b-1)/2;  
+        }
+        System.out.print(t-sa);
+    }
+        public static int dfs(int i,ArrayList<ArrayList<Integer>> g, boolean v[])
+        {
+            v[i]=true;
+            int a = 1;
+            for(int ne:g.get(i))
+            {
+                if(!v[ne])
+                {
+                    a+=dfs(ne,g,v);
+                }
+            }
+            return a;
+        }
+        
+            
+    }
+    
