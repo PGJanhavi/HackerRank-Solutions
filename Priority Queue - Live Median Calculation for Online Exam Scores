@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        PriorityQueue<Integer> l = new PriorityQueue<>(Collections.reverseOrder());
+        PriorityQueue<Integer> r = new PriorityQueue<>();
+        for(int i=0;i<n;i++)
+        {
+            int a = sc.nextInt();
+            l.add(a);
+            if(!r.isEmpty() && l.peek() > r.peek())
+            {
+                r.add(l.poll());
+                l.add(r.poll());
+            }
+            if(l.size()>r.size()+1)
+            {
+                r.add(l.poll());
+            }
+            else if(r.size()>l.size())
+            {
+                l.add(r.poll());
+            }
+            double m;
+            if(l.size() == r.size())
+            {
+                m = (l.peek() + r.peek())/2.0;
+            }
+            else
+            {
+                m = l.peek();
+            }
+            System.out.printf("%.2f ",m );
+        }
+        
+    }
+}
