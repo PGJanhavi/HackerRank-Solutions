@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    public static String FindExcelColumnName(int n)
+    {  StringBuilder r = new StringBuilder();
+        while(n>0)
+        { 
+            n--;
+        int a = n%26;
+        char b = (char)('A'+a);
+          r.append(b);  
+            n=n/26;
+        }
+        return r.reverse().toString();
+        
+        
+    }
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        System.out.print(FindExcelColumnName(n));
+        
+    }
+}
