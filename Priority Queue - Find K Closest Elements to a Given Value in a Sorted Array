@@ -1,0 +1,48 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int arr[] = new int[n];
+        for(int i=0; i<n;i++)
+        {
+           arr[i] = sc.nextInt(); 
+        }
+        int t = sc.nextInt();
+        int k = sc.nextInt();
+        PriorityQueue<Integer> p = new PriorityQueue<>(new Comparator<Integer>()
+                                                       {
+                                                      public int compare(Integer a, Integer b)
+                                                       {
+                                                           int da = Math.abs(a-t);
+                                                           int db = Math.abs(b-t);
+                                                           if(da != db)
+                                                           {
+                                                               return db-da;
+                                                           }
+                                                           return b-a;
+                                                      }
+                                                       });
+        for(int a: arr )
+        {
+            if (a != t)
+            {
+                p.add(a);
+            }
+            if(p.size()>k)
+            {
+                p.poll();
+            }
+        }
+        LinkedList<Integer> l = new LinkedList<>(p);
+        Collections.sort(l);
+        for(int b : l)
+        {
+        System.out.print(b+" ");
+    }
+}
+}
