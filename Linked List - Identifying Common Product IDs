@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        LinkedList<Integer> l1 = new LinkedList<>();
+        for(int i=0;i<a;i++)
+        {
+            int data1 = sc.nextInt();
+            l1.add(data1);
+        }
+         int b = sc.nextInt();
+        LinkedList<Integer> l2 = new LinkedList<>();
+        for(int i=0;i<b;i++)
+        {
+            int data2 = sc.nextInt();
+            for(int num : l1)
+            {
+                if(num==data2)
+                {
+                    l2.add(data2);
+                    break;
+                }
+            }
+        }
+        if(l2.isEmpty())
+        {
+            System.out.print("No Intersection");
+        }
+        else
+        {
+            for(int i: l2)
+                System.out.print(i+" ");
+        }
+    }
+}
