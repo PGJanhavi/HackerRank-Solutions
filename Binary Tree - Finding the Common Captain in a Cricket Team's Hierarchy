@@ -1,0 +1,75 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+class Node{
+    String data;
+    Node left;
+    Node right;
+    Node(String data)
+    {
+        this.data=data;
+        this.left = null;
+        this.right = null; 
+    }
+}
+class B
+{
+    public static Node build(String arr[])
+    { 
+
+        Node root = new Node(arr[0]);
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        int i=1;
+        while(i<arr.length && !q.isEmpty())
+        {
+            Node current = q.remove();
+            if(i<arr.length && !arr[i].equals("null"))
+            {
+                current.left=new Node(arr[i]);
+                q.add(current.left);
+            }
+            i++;
+            if(i<arr.length && !arr[i].equals("null"))
+            {
+                current.right=new Node(arr[i]);
+                q.add(current.right);
+            }
+            i++;        
+        }
+        return root;
+    }
+    public static Node c(Node root,String p,String q)
+    {
+        if(root==null|| (root.data).equals(p) || (root.data).equals(q) )
+        {
+            return root;
+        }
+        Node left = c(root.left,p,q);
+        Node right = c(root.right,p,q);
+        if(left != null && right != null)
+        {
+            return root;
+        }
+        return(left!=null)?left:right;
+    }
+}
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine();
+            String arr[] = sc.nextLine().split(" ");
+        
+        String p = sc.next();
+        String q = sc.next();
+        Node root = B.build(arr);
+        Node r = B.c(root,p,q);
+        System.out.print(r.data);
+
+    }
+}
