@@ -1,0 +1,77 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+public static int c(int n,int cl,int cr,ArrayList<ArrayList<Integer>> g)
+{
+    boolean v[] = new boolean[n+1];
+    int tc=0;
+    for(int i=1;i<=n;i++)
+    {
+        if(!v[i])
+        {
+            int c = dfs(i,g,v);
+            tc+=cr*(c-1)+cl;
+        }
+    }
+    return tc;
+}
+    public static int dfs(int i,ArrayList<ArrayList<Integer>> g, boolean v[])
+    {
+        Stack<Integer> s = new Stack<>();
+        s.push(i);
+        v[i]= true;
+        int c = 1;
+        while(!s.isEmpty())
+        {
+            int cu = s.pop();
+            for(int ne: g.get(cu))
+            {
+                if(!v[ne])
+                {
+                    v[ne] = true;
+                    c++;
+                    s.push(ne);
+                }
+            }
+        }
+        return c;
+    }
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int q = sc.nextInt();
+        while(q != 0)
+        {
+            int n = sc.nextInt();
+            int m = sc.nextInt();
+            int cl = sc.nextInt();
+            int cr = sc.nextInt();
+            
+    if(cl<=cr)
+    {
+        System.out.println(n*cl);
+    }
+            else
+            {
+            ArrayList<ArrayList<Integer>> g = new ArrayList<>();
+             for(int i=0;i<=n;i++)
+            {
+                 g.add(new ArrayList<Integer>());
+             }
+            for(int i=0;i<m;i++)
+            {
+                int u = sc.nextInt();
+                int v = sc.nextInt();
+                g.get(u).add(v);
+                g.get(v).add(u);
+            }
+        System.out.println(c(n,cl,cr,g));
+            }
+            q--;
+        }
+    }
+}
