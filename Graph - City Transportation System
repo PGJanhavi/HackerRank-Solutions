@@ -1,0 +1,51 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+class Edge
+{
+    int s;
+    int d;
+    Edge(int s,int d)
+    {
+        this.s=s;
+        this.d=d;
+    }
+}
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        ArrayList<Edge> graph[] = new ArrayList[n];
+        for(int i=0;i<n;i++)
+        {
+            graph[i] = new ArrayList<>();
+        }
+        for(int i=0;i<m;i++)
+        {
+            int u=sc.nextInt();
+            int v=sc.nextInt();
+            graph[u-1].add(new Edge(u-1,v-1));
+            graph[v-1].add(new Edge(v-1,u-1));   
+        }
+        for(int i=0;i<graph.length;i++)
+        {
+            System.out.print("City "+(i+1)+": ");
+            ArrayList<Integer> ne = new ArrayList<>();
+            for(Edge e : graph[i])
+            {
+                ne.add(e.d+1);
+            }
+            Collections.sort(ne);
+            for(int city : ne)
+            {
+                System.out.print(city+" ");
+            }
+             System.out.println();
+        }
+    }
+}
