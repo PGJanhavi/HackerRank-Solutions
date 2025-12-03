@@ -1,0 +1,99 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+class Node
+{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data=data;
+        this.next=null;
+    }
+}
+class L
+{
+    Node head;
+    public void copy(int data)
+    { 
+        Node newnode = new Node(data);
+        if(head==null)
+        {
+            head=newnode;
+        }
+        else
+        {
+            Node current = head;
+            while(current.next != null)
+            {
+                current=current.next;
+            }
+            current.next = newnode;
+        }
+    }
+    public void swap(int n,int p)
+    {   
+        int val1=0;
+        int val2 = 0;
+        int i =1;
+        Node current =head;
+        while(current != null)
+        {  
+            if ( i == p)
+            {
+                val1 = current.data;
+            }
+            if(i == (n-p+1))
+               {
+                    val2 = current.data;
+               }
+            current = current.next;
+               i++;
+        } 
+          Node temp = head;
+        i =1;
+          while(temp != null) 
+               {
+                 if ( i == p)
+            {
+                temp.data = val2;
+            }
+            if(i == (n-p+1))
+               {
+                   temp.data = val1;
+               }
+              System.out.print(temp.data+" ");
+              temp = temp.next;
+               i++;  
+               }
+    }
+        public void print()
+        {
+        Node current = head;
+          while(current != null) 
+               {
+                   System.out.print(current.data+" ");
+                   current=current.next;
+               }
+               
+        }
+    }
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        L list = new L();
+        for(int i=0;i<n;i++)
+        {
+            int data = sc.nextInt();
+            list.copy(data);
+        }
+        int p = sc.nextInt();
+        list.swap(n,p);
+        
+    }
+}
