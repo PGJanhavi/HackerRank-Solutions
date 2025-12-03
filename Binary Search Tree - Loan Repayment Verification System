@@ -1,0 +1,73 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+class Node
+{
+    int data;
+    Node left;
+    Node right;
+    Node(int data)
+    {
+        this.data=data;
+        this.left=null;
+        this.right=null;
+    }
+}
+class B
+{
+    public static Node build(Node root, int b)
+    {
+        if(root == null)
+        {
+            root = new Node(b);
+            return root;
+        }
+        if(b<root.data)
+        {
+            root.left = build(root.left,b);
+        }
+        else 
+        {
+            root.right = build(root.right,b);
+        }
+        return root;
+    }
+    public static boolean sum(Node root, int c)
+    {
+        if(root == null)
+        {
+            return false;
+        }
+        if(root.left == null && root.right == null)
+        {
+            return c == root.data;
+        }
+        int r = c - root.data;
+        return sum(root.left, r) || sum(root.right, r);
+    }
+}
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        Node root = null;
+        for(int i=0;i<a;i++)
+        {
+            int b = sc.nextInt();
+            root = B.build(root,b);
+        }
+        int c = sc.nextInt();
+        if(B.sum(root,c))
+        {
+            System.out.print("true");
+        }
+        else
+        {
+            System.out.print("false");
+        }
+    }
+}
