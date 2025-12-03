@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        PriorityQueue<Integer> p = new PriorityQueue<>();
+        for(int i =0;i<n;i++)
+        {
+            p.add(sc.nextInt());
+            
+        }
+        int t=0;
+         while(p.size()>1)
+         {
+             int a = p.poll();
+             int b = p.poll();
+             int c = a+b;
+             t += c;
+             p.add(c);
+         }
+        System.out.print(t);
+        }
+    }
