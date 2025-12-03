@@ -1,0 +1,58 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        String s1 = sc.nextLine();
+        String s2 = sc.nextLine();
+        boolean flag = true;
+        if(s1.length() != s2.length())
+        {
+            flag = false;
+        }
+        HashMap<Character, Character> m1 = new HashMap<>();
+         HashMap<Character, Character> m2 = new HashMap<>();
+        for(int i=0;i<s1.length();i++)
+        {
+            if(m1.containsKey(s1.charAt(i)))
+            {
+                if(m1.get(s1.charAt(i)) != s2.charAt(i))
+                {
+                    flag = false;
+                }
+            }
+            else
+            {
+                m1.put(s1.charAt(i), s2.charAt(i));
+            }
+            
+            if(m2.containsKey(s2.charAt(i)))
+            {
+                if(m2.get(s2.charAt(i)) != s1.charAt(i))
+                {
+                    flag = false;
+                }
+            }
+            else
+            {
+                m2.put(s2.charAt(i), s1.charAt(i));
+            }
+            
+        }
+        if(flag == true)
+        {
+            System.out.print("Yes");
+        }
+        else
+        {
+          System.out.print("No");   
+        }
+        
+    }
+}
