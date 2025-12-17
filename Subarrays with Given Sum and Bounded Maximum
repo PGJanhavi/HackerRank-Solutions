@@ -1,0 +1,77 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+
+class Result {
+
+    public static int countSubarraysWithSumAndMaxAtMost(List<Integer> nums, long k, long M) {
+        int s =0;
+        int c =0;
+        while(s<nums.size())
+        {
+            if(nums.get(s)>M)
+            {
+                s++;
+                continue;
+            }
+        
+        int e = s;
+        while(e<nums.size() && nums.get(e)<=M)
+        {
+            e++;
+        }
+        HashMap<Long, Integer> map = new HashMap<>();
+        map.put(0L,1);
+        long  p =0;
+    for(int i=s;i<e;i++)
+    {
+        p += nums.get(i);
+        c += map.getOrDefault(p-k,0);
+        map.put(p,map.getOrDefault(p,0)+1); 
+    }
+    
+    s = e+1;
+    }
+return c;
+    }
+}
+
+
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+        int numsCount = Integer.parseInt(bufferedReader.readLine().trim());
+
+        List<Integer> nums = IntStream.range(0, numsCount).mapToObj(i -> {
+            try {
+                return bufferedReader.readLine().replaceAll("\\s+$", "");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        })
+            .map(String::trim)
+            .map(Integer::parseInt)
+            .collect(toList());
+
+        long k = Long.parseLong(bufferedReader.readLine().trim());
+
+        long M = Long.parseLong(bufferedReader.readLine().trim());
+
+        long result = Result.countSubarraysWithSumAndMaxAtMost(nums, k, M);
+
+        System.out.println(result);
+
+        bufferedReader.close();
+    }
+}
