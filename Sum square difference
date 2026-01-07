@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long t = sc.nextInt();
+        for(long i = 0; i < t; i++){
+            long n = sc.nextInt();
+            long s1 = 0;
+            for(long a=1;a<=n;a++)
+            {
+                s1 += a;
+            }
+            long a1 = s1*s1;
+            long s2 =0;
+            for(long b=1;b<=n;b++)
+            {
+                s2 += b*b;
+        }
+        long a2 = a1-s2;
+        System.out.println(a2);
+    }
+}
+}
