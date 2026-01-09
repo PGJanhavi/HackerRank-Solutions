@@ -1,0 +1,49 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+public static boolean p(int num)
+{
+    if(num<2)
+    {
+        return false;
+    }
+    int c =0;
+    for(int i=2;i*i<=num;i++)
+    {
+        if(num%i == 0)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        int q[] = new int[t];
+        int m = 0;
+        for(int i = 0; i < t; i++)
+        {
+            q[i] = sc.nextInt();
+            m = Math.max(m,q[i]);
+        }
+            ArrayList<Integer> al = new ArrayList<>();
+            int num = 2;
+            while(al.size()<m)
+            {
+                if(p(num))
+                {
+                    al.add(num);
+                }
+                num++;
+            }
+            for(int n: q)
+            {
+            System.out.println(al.get((n-1)));
+        }
+    }
+}
